@@ -1,0 +1,70 @@
+<tool id="smart-add-metadata-biom" name="SMART add metadata BIOM" version="1.0.0">
+  <description>Add metadata to BIOM file</description>
+  <command>
+biom add-metadata -i $input -o $output
+#if $meta.metadata=="s"
+--sample-metadata-fp $meta.sample
+--sample-header $meta.sheader
+#else if $meta.metadata=="o"
+--observation-metadata-fp $meta.observation
+--observation-header $meta.oheader
+#else
+--sample-metadata-fp $meta.sample
+--sample-header $meta.sheader
+--observation-metadata-fp $meta.observation
+--observation-header $meta.oheader
+#end if
+  </command>
+  <inputs>
+    <param format="json" name="input" type="data" label="BIOM input file" help="select BIOM input file" />
+    <conditional name="meta">
+      <param name="metadata" type="select" label="Type of metadata" help="select type of metadata You want to add">
+        <option value="s">Sample metadata</option>
+        <option value="o" selected="TRUE">Observation metadata</option>
+        <option value="b">Sample and Observation metadata</option>
+      </param>
+      <when value="s">
+        <param format="txt" name="sample" type="data" label="Sample metadata" help="insert sample metadata" />
+        <param name="sheader" type="select" label="metadata file header" help="insert metadata file header">
+          <option value="OTUID,taxonomy,confidence">OTUID Taxonomy Confidence</option>
+          <option value="OTUID,taxonomy" selected="TRUE">OTUID Taxonomy</option>
+        </param>
+      </when>
+      <when value="o">
+        <param format="txt" name="observation" type="data" label="Observation metadata" help="insert observation metadata" />
+        <param name="oheader" type="select" label="metadata file header" help="insert metadata file header">
+          <option value="OTUID,taxonomy,confidence">OTUID Taxonomy Confidence</option>
+          <option value="OTUID,taxonomy" selected="TRUE">OTUID Taxonomy</option>
+        </param>
+      </when>
+      <when value="b">
+        <param format="txt" name="sample" type="data" label="Sample metadata" help="insert sample metadata" />
+        <param name="sheader" type="select" label="metadata file header" help="insert metadata file header">
+          <option value="OTUID,taxonomy,confidence">OTUID Taxonomy Confidence</option>
+          <option value="OTUID,taxonomy" selected="TRUE">OTUID Taxonomy</option>
+        </param>
+        <param format="txt" name="observation" type="data" label="Observation metadata" help="insert observation metadata" />
+        <param name="oheader" type="select" label="metadata file header" help="insert metadata file header">
+          <option value="OTUID,taxonomy,confidence">OTUID Taxonomy Confidence</option>
+          <option value="OTUID,taxonomy" selected="TRUE">OTUID Taxonomy</option>
+        </param>
+      </when>
+    </conditional>
+  </inputs>
+  <outputs>
+    <data format="json" name="output" />
+  </outputs>
+  <stdio>
+    <exit_code range="1:" level="fatal" />
+  </stdio>
+  <help>
+**What it does**
+
+.. image:: $ static_path /images/logo_smart.jpg
+    :height: 100
+    :width: 200
+
+Bioinformatics Section, Biotechnology Department, Plant Production and Biotechnology Division, PT SMART Tbk.
+
+  </help>
+</tool>

@@ -1,0 +1,27 @@
+<tool id="smart-merge-otu-tables" name="SMART merge otu tables" version="1.0.0">
+  <description>Merge two or more OTU tables</description>
+  <command>
+merge_otu_tables.py
+-i $input1,
+#for $q in $queries
+${q.input2}
+#end for
+-o $output
+  </command>
+  <inputs>
+    <param name="input1" type="data" format="json" label="BIOM file" />
+    <repeat name="queries" title="Dataset">
+      <param name="input2" type="data" format="json" label="Select BIOM file" />
+    </repeat>
+  </inputs>
+  <outputs>
+    <data name="output" format="json" />
+  </outputs>
+  <stdio>
+    <exit_code range="1:" level="fatal" />
+  </stdio>
+  <help>
+**What it does**
+
+  </help>
+</tool>

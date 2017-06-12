@@ -1,0 +1,35 @@
+<tool id="smart-table-to-biom" name="SMART Table to BIOM" version="1.0.0">
+  <description>Convert Tabular file into BIOM format</description>
+  <command>
+biom convert -i $input -o $output --table-type="OTU table" --to-hdf5
+
+#if $meta.taxo=="T"
+--process-obs-metadata $meta.headerobs
+#else
+
+#end if
+  </command>
+  <inputs>
+    <param format="tabular" name="input" type="data" label="Tabular input file" />
+    <conditional name="meta">
+      <param name="taxo" type="select" label="insert taxonomy metadata">
+        <option value="T" selected="TRUE">Yes, include taxonomy metadata</option>
+        <option value="F">meh..</option>
+      </param>
+      <when value="T">
+        <param name="headerobs" type="text" size="30" label="Taxonomy column header"/>
+      </when>
+      <when>
+      </when>
+    </conditional>
+  </inputs>
+  <outputs>
+    <data format="json" name="output" />
+  </outputs>
+  <stdio>
+    <exit_code range="1:" level="fatal" />
+  </stdio>
+  <help>
+**what it does**
+  </help>
+</tool>

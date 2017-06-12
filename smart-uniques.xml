@@ -1,0 +1,33 @@
+<tool id="smart-uniques" name="SMART Uniques" version="1.0.0">
+  <description>Remove duplicate from fasta file</description>
+  <command>
+usearch -fastx_uniques $input
+$sizeout
+-fastaout $output
+  </command>
+  <inputs>
+    <param format="fasta" name="input" type="data" label="fasta input file" help="select fasta input file" />
+    <param name="sizeout" type="select" label="write size on header">
+      <option value="-sizeout">Yes, write it!</option>
+      <option value="">No, don't do it</option>
+    </param>
+  </inputs>
+  <outputs>
+    <data format="fasta" name="output" />
+  </outputs>
+  <stdio>
+    <exit_code range="1:" level="fatal" />
+  </stdio>
+  <help>
+**What it does**
+
+Removes duplicates from fasta file
+
+.. image:: ${static_path}/images/logo_smart.jpg
+    :height: 100
+    :width: 200
+
+Bioinformatics Section, Biotechnology Department, Plant Production and Biotechnology Division, PT SMART Tbk.
+  </help>
+  
+</tool>

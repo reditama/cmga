@@ -1,0 +1,32 @@
+<tools id="smart-summarize-taxa" name="SMART Summarize Taxa" version="1.0.0">
+  <description>Summarize taxa and store results in a new table</description>
+  <command>
+summarize_taxa.py -i $input -L $level $abundance --output_dir summarized/ 
+  </command>
+  <inputs>
+    <param name="input" format="json" type="data" label="BIOM input file" />
+    <param name="level" type="integer" value="1" min="1" max="7" label="Taxonomy level" />
+    <param name="abundance" type="select" label="Select type of abundance">
+      <option value="" selected="TRUE">Relative abundance</option>
+      <option value="-a">Absolute abundance</option>
+    </param>
+  </inputs>
+  <outputs>
+    <data format="tabular" name="otu_table_tabular" label="${tool.name} on ${on_string}: Tabular" from_work_dir="summarized/*.txt" />
+    <data format="json" name="otu_table_biom" label="${tool.name} on ${on_string} BIOM" from_work_dir="summarized/*.biom" />
+  </outputs>
+  <stdio>
+    <exit_code range="1:" level="fatal" />
+  </stdio>
+  <help>
+**What it does**
+
+.. image:: ${static_path}/images/logo_smart.jpg
+    :height: 100
+    :width: 200
+
+Bioinformatics Section, Biotechnology Department, Plant Production and Biotechnology Division, PT SMART Tbk.
+
+
+  </help>
+</tools>

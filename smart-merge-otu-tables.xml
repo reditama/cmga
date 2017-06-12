@@ -1,0 +1,136 @@
+<tool id="smart-merge-otu-tables" name="SMART merge otu tables" version="1.0.0">
+  <description>Merge two or more OTU tables</description>
+  <command>
+merge_otu_tables.py
+
+#if $number.inputn=="2"
+-i $number.input1,$number.input2
+
+#else if $number.inputn=="3"
+-i $number.input1,$number.input2,$number.input3
+
+#else if $number.inputn=="4"
+-i $number.input1,$number.input2,$number.input3,$number.input4
+
+#else if $number.inputn=="5"
+-i $number.input1,$number.input2,$number.input3,$number.input4,$number.input5
+
+#else if $number.inputn=="6"
+-i $number.input1,$number.input2,$number.input3,$number.input4,$number.input5,$number.input6
+
+#else if $number.inputn=="7"
+-i $number.input1,$number.input2,$number.input3,$number.input4,$number.input5,$number.input6,$number.input7
+
+#else if $number.inputn=="8"
+-i $number.input1,$number.input2,$number.input3,$number.input4,$number.input5,$number.input6,$number.input7,$number.input8
+
+#else if $number.inputn=="9"
+-i $number.input1,$number.input2,$number.input3,$number.input4,$number.input5,$number.input6,$number.input7,$number.input8,$number.input9
+
+#else if $number.inputn=="10"
+-i $number.input1,$number.input2,$number.input3,$number.input4,$number.input5,$number.input6,$number.input7,$number.input8,$number.input9,$number.input10
+
+#else
+
+#end if
+-o $output
+
+  </command>
+  <inputs>
+    <conditional name="number">
+      <param name="inputn" type="select" label="Select number of inputs">
+        <option value="2" selected="TRUE">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+      </param>
+      <when value="2">
+        <param name="input1" format="json" type="data" label="select input file 1" />
+        <param name="input2" format="json" type="data" label="select input file 2" />
+      </when>
+      <when value="3">
+        <param name="input1" format="json" type="data" label="select input file 1" />
+        <param name="input2" format="json" type="data" label="select input file 2" />
+        <param name="input3" format="json" type="data" label="select input file 3" />
+      </when>
+      <when value="4">
+        <param name="input1" format="json" type="data" label="select input file 1" />
+        <param name="input2" format="json" type="data" label="select input file 2" />
+        <param name="input3" format="json" type="data" label="select input file 3" />
+        <param name="input4" format="json" type="data" label="select input file 4" />
+      </when>
+      <when value="5">
+        <param name="input1" format="json" type="data" label="select input file 1" />
+        <param name="input2" format="json" type="data" label="select input file 2" />
+        <param name="input3" format="json" type="data" label="select input file 3" />
+        <param name="input4" format="json" type="data" label="select input file 4" />
+        <param name="input5" format="json" type="data" label="select input file 5" />
+      </when>
+      <when value="6">
+        <param name="input1" format="json" type="data" label="select input file 1" />
+        <param name="input2" format="json" type="data" label="select input file 2" />
+        <param name="input3" format="json" type="data" label="select input file 3" />
+        <param name="input4" format="json" type="data" label="select input file 4" />
+        <param name="input5" format="json" type="data" label="select input file 5" />
+        <param name="input6" format="json" type="data" label="select input file 6" />
+      </when>
+      <when value="7">
+        <param name="input1" format="json" type="data" label="select input file 1" />
+        <param name="input2" format="json" type="data" label="select input file 2" />
+        <param name="input3" format="json" type="data" label="select input file 3" />
+        <param name="input4" format="json" type="data" label="select input file 4" />
+        <param name="input5" format="json" type="data" label="select input file 5" />
+        <param name="input6" format="json" type="data" label="select input file 6" />
+        <param name="input7" format="json" type="data" label="select input file 7" />
+      </when>
+      <when value="8">
+        <param name="input1" format="json" type="data" label="select input file 1" />
+        <param name="input2" format="json" type="data" label="select input file 2" />
+        <param name="input3" format="json" type="data" label="select input file 3" />
+        <param name="input4" format="json" type="data" label="select input file 4" />
+        <param name="input5" format="json" type="data" label="select input file 5" />
+        <param name="input6" format="json" type="data" label="select input file 6" />
+        <param name="input7" format="json" type="data" label="select input file 7" />
+        <param name="input8" format="json" type="data" label="select input file 8" />
+      </when>
+      <when value="9">
+        <param name="input1" format="json" type="data" label="select input file 1" />
+        <param name="input2" format="json" type="data" label="select input file 2" />
+        <param name="input3" format="json" type="data" label="select input file 3" />
+        <param name="input4" format="json" type="data" label="select input file 4" />
+        <param name="input5" format="json" type="data" label="select input file 5" />
+        <param name="input6" format="json" type="data" label="select input file 6" />
+        <param name="input7" format="json" type="data" label="select input file 7" />
+        <param name="input8" format="json" type="data" label="select input file 8" />
+        <param name="input9" format="json" type="data" label="select input file 9" />
+      </when>
+      <when value="10">
+        <param name="input1" format="json" type="data" label="select input file 1" />
+        <param name="input2" format="json" type="data" label="select input file 2" />
+        <param name="input3" format="json" type="data" label="select input file 3" />
+        <param name="input4" format="json" type="data" label="select input file 4" />
+        <param name="input5" format="json" type="data" label="select input file 5" />
+        <param name="input6" format="json" type="data" label="select input file 6" />
+        <param name="input7" format="json" type="data" label="select input file 7" />
+        <param name="input8" format="json" type="data" label="select input file 8" />
+        <param name="input9" format="json" type="data" label="select input file 9" />
+        <param name="input10" format="json" type="data" label="select input file 10" />
+      </when>
+    </conditional>
+  </inputs>
+  <outputs>
+    <data name="output" format="json" />
+  </outputs>
+  <stdio>
+    <exit_code range="1:" level="fatal" />
+  </stdio>
+  <help>
+**What it does**
+
+  </help>
+</tool>

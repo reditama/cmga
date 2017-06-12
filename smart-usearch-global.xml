@@ -1,0 +1,49 @@
+<tool id="smart-usearch-global" name="SMART USearch Global" version="1.0.0">
+  <description>MAP OTUs to fastq sequences</description>
+  <command>
+usearch -usearch_global $inputfasta -db $inputotu
+ -strand $strand -id 0.97 -otutabout $otutab -biomout $biom -mothur_shared_out $mothur
+
+  </command>
+  <inputs>
+    <param format="fasta" name="inputfasta" type="data" label="Fasta Input File" help="select fasta input file" />
+    <param format="fasta" name="inputotu" type="data" label="Fasta OTUs Input File" help="select fasta OTUs file" />
+   <!-- <conditional name="otu">
+      <param name="inputotu" type="select" label="Select OTUs source">
+        <option value="history">Select from history</option>
+        <option value="database">Select from database</option>
+      </param>
+      <when value="history">
+        <param format="fasta" name="inputotu" type="data" label="Fasta OTUs Input File" help="insert fasta OTUs file" />
+      </when>
+      <when value="database">
+        <param name="databaseotu" type="select" label="Select OTUs file from database" >
+          <option value="">OTU 16S</option>
+          <option value="">OTU ITS</option>
+        </param>
+      </when>
+    </conditional> -->
+    <param name="strand" type="select" label="Select Strand">
+      <option value="plus" selected="TRUE">Plus</option>
+      <option value="minus">Minus</option>
+    </param>
+    <!--param name="identity" type="float" value="0.97" label="Percent Identity" help="Insert percent identity in decimal" /-->
+  </inputs>
+  <outputs>
+    <data format="tabular" name="otutab" label="${tool.name} on ${on_string}: QIIME formatted output" />
+    <data format="json" name="biom" label="${tool.name} on ${on_string}: BIOM formatted output" />
+    <data format="tabular" name="mothur" label="${tool.name} on ${on_string}: Mothur Shared File" />
+  </outputs>
+  <stdio>
+    <exit_code range="1:" level="fatal" />
+  </stdio>
+  <help>
+**What it does**
+
+.. image:: ${static_path}/images/logo_smart.jpg
+    :height: 100
+    :width: 200
+
+Bioinformatics Section, Biotechnology Department, Plant Production and Biotechnology Division, PT SMART Tbk.
+  </help>
+</tool>

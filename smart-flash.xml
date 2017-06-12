@@ -1,0 +1,37 @@
+<tool id="smart-flash" name="SMART Flash" version="1.0.0">
+  <description>Fast Length Adjustment of Short Reads</description>
+  <command>
+flash
+-d flash_output
+$input1
+$input2
+  </command>
+  <inputs>
+    <param format="fastq" name="input1" type="data" label="input1" help="select input1 file" />
+    <param format="fastq" name="input2" type="data" label="input2" help="select input2 file" />
+  </inputs>
+  <outputs>
+    <data format="fastq" name="merged" label="${tool.name} on ${on_string}: Merged read" from_work_dir="flash_output/out.extendedFrags.fastq" />
+    <data format="fastq" name="not_merged1" label="${tool.name} on ${on_string}: Uncombined data 1" from_work_dir="flash_output/out.notCombined_1.fastq" />
+    <data format="fastq" name="not_merged2" label="${tool.name} on ${on_string}: Uncombined data 2" from_work_dir="flash_output/out.notCombined_2.fastq" />
+    <data format="txt" name="num_hist" label="${tool.name} on ${on_string}: Numeric histogram" from_work_dir="flash_output/out.hist" />
+    <data format="txt" name="vis_hist" label="${tool.name} on ${on_string}: Visual histogram" from_work_dir="flash_output/out.histogram" />
+  </outputs>
+  <stdio>
+    <exit_code range="1:" level="fatal" />
+  </stdio>
+  <help>
+**What it does**
+
+FLASH (Fast Length Adjustment of SHort reads) is an accurate and fast tool to merge paired-end reads that were generated from DNA fragments whose lengths are shorter than twice the length of reads.  Merged read pairs result in unpaired longer reads, which are generally more desired in genome assembly and genome analysis processes.
+
+Briefly, the FLASH algorithm considers all possible overlaps at or above a minimum length between the reads in a pair and chooses the overlap that results in the lowest mismatch density (proportion of mismatched bases in the overlapped region).  Ties between multiple overlaps are broken by considering quality scores at mismatch sites.  When building the merged sequence, FLASH computes a consensus sequence in the overlapped region. More details can be found in the original publication (http://bioinformatics.oxfordjournals.org/content/27/21/2957.full).
+
+
+.. image:: ${static_path}/images/logo_smart.jpg
+    :height: 100
+    :width: 200
+
+Bioinformatics Section, Biotechnology Department, Plant Production and Biotechnology Division, PT SMART Tbk.
+  </help>
+</tool>

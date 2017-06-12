@@ -1,0 +1,61 @@
+<tool id="smart-assign-taxonomy" name="SMART Assign Taxonomy" version="1.0.0">
+  <description>Assign taxonomy to each sequence</description>
+  <command>
+assign_taxonomy.py -i $input -o output/
+#if $assignment.method=="uclust"
+-t $assignment.taxonomy_id
+-r $assignment.reference_seq
+--similarity $assignment.similarity
+#else
+
+#end if
+  </command>
+  <inputs>
+    <param name="input" type="data" format="fasta" label="Select Fasta input file" />
+    <conditional name="assignment">
+      <param name="method" type="select" label="Select assignment method">
+        <option value="blast">Blast</option>
+<!--        <option value="mothur">Mothur</option>
+        <option value="rdp">RDP</option>
+        <option value="rtax">Rtax</option>-->
+        <option value="sortmerna">Sortme RNA</option>
+        <option value="uclust" selected="TRUE">Uclust</option>
+      </param>
+      <when value="uclust">
+        <param name="taxonomy_id" type="select" label="Select taxonomy id">
+          <option value="/home/bioinformatics3/taxodb/gg_13_5_taxonomy.txt">GreenGenes 16S gg_13_5</option>
+          <option value="/home/bioinformatics3/taxodb/sh_taxonomy_qiime_ver7_dynamic_20.11.2016.txt">Unite Fungi DB 20.11.2016</option>
+          <option value="/home/bioinformatics3/taxodb/LSURef_smart_v4.txt">LSURef SMART v4</option>
+          <option value="/home/bioinformatics3/taxodb/ITSoneDB_smart_v2.txt">ITSoneDB SMART v2</option>
+        </param>
+        <param name="reference_seq" type="select" label="Select fasta reference sequence">
+          <option value="/home/bioinformatics3/taxodb/gg_13_5.fasta">GreenGenes 16s gg_13_5</option>
+          <option value="/home/bioinformatics3/taxodb/sh_refs_qiime_ver7_dynamic_20.11.2016.fasta">Unite Fungi DB 20.11.2016 </option>
+          <option value="/home/bioinformatics3/taxodb/LSURef_smart_v4.fasta">LSURef SMART v4</option>
+          <option value="/home/bioinformatics3/taxodb/ITSoneDB_smart_v2.fasta">ITSoneDB SMART v2</option>
+        </param>
+        <param name="similarity" type="float" size="4" value="0.9" label="Minimum percent similarity" help="Expressed as a fraction between 0 and 1" />
+      </when>
+      <when value="sortmerna" />
+    </conditional>
+  </inputs>
+  <outputs>
+    <data format="tabular" name="tax_assignment_table" label="${tool.name} on ${on_string}: Assignment table" from_work_dir="output/*.txt" />
+    <data format="txt" name="tax_assignment_log" label="${tool.name} on ${on_string}: Assignment log" from_work_dir="output/*.log" />
+  </outputs>
+  <stdio>
+    <exit_code range="1:" level="fatal" />
+  </stdio>
+  <help>
+**What it does**
+
+Removes duplicates from fasta file
+
+.. image:: ${static_path}/images/logo_smart.jpg
+    :height: 100
+    :width: 200
+
+Bioinformatics Section, Biotechnology Department, Plant Production and Biotechnology Division, PT SMART Tbk.
+
+  </help>
+</tool>

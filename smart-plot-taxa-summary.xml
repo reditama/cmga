@@ -1,0 +1,36 @@
+<tool id="smart-plot-taxa-summary" name="SMART Plot Taxa Summary" version="1.0.0">
+  <description>Make taxonomy summary chart based on taxonomy assignment</description>
+  <command>
+plot_taxa_summary.py -i $input -n $num -o /home/bioinformatics3/plot/ -k $background -d $dpi -x $width -y $height -c area > output.txt
+  </command>
+  <inputs>
+    <param name="input" type="data" format="tabular" label="Tabular input file" />
+    <param name="num" type="integer" value="20" size="6" label="Maximum number of taxonomies" help="for pie chart only" />
+    <param name="background" type="select" label="Background color" help="Choose background color">
+      <option value="white" selected="TRUE">White, like me!</option>
+      <option value="black">Black, like you!</option> 
+    </param>
+    <param name="dpi" type="integer" value="80" size="6" label="Resolution of the plot (DPI)" />
+    <param name="width" type="integer" value="12" size="6" label="Width of x-axis" />
+    <param name="height" type="integer" value="6" size="6" label="Height of y-axis" />
+  </inputs>
+  <outputs>
+    <data format="txt" name="output.txt" />
+<!--    <data format="html" name="area_chart" label="${tool.name} on ${on_string}: Area Chart" from_work_dir="plot/*.html" />
+    <data format="html" name="bar_chart" label="${tool.name} on ${on_string}: Bar Chart" from_work_dir="/home/bioinformatics3/galaxy-bakf2/tools/metagenome/plot/bar_charts.html" />
+    <data format="html" name="pie_chart" label="${tool.name} on ${on_string}: Pie Chart" from_work_dir="/home/bioinformatics3/galaxy-bakf2/tools/metagenome/plot/pie_chart.html" />-->
+  </outputs>
+  <stdio>
+    <exit_code range="1:" level="fatal" />
+  </stdio>
+  <help>
+**What it does**
+
+.. image:: ${static_path}/images/logo_smart.jpg
+    :height: 100
+    :width: 200
+
+Bioinformatics Section, Biotechnology Department, Plant Production and Biotechnology Division, PT SMART Tbk.
+
+  </help>
+</tool>

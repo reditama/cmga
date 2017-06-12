@@ -1,0 +1,27 @@
+<tool id="smart-biom-summarize-table" name="SMART BIOM summarize table" version="1.0.0">
+  <description>Summarizing BIOM tables</description>
+  <command>
+biom summarize-table -i $input -o $output $mode
+  </command>
+  <inputs>
+    <param format="json" name="input" type="data" label="BIOM Input file" />
+    <param name="mode" type="select" label="Mode">
+      <option value="" selected="TRUE">Quantitative</option>
+      <option value="--qualitative">Qualitative</option>
+    </param>
+  </inputs>
+  <outputs>
+    <data format="txt" name="output" />
+  </outputs>
+  <stdio>
+    <exit_code range="1:" level="fatal" />
+  </stdio>
+  <help>
+.. image:: ${static_path}/images/logo_smart.jpg
+    :height: 100
+    :width: 200
+
+Bioinformatics Section, Biotechnology Department, Plant Production and Biotechnology Division, PT SMART Tbk.
+
+  </help>
+</tool>

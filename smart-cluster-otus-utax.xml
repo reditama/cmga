@@ -1,0 +1,50 @@
+<tool id="smart-cluster-otus-utax" name="SMART Cluster OTUs Utax" version="1.0.0">
+  <description>Generates OTUs based on predicted taxonomies for a set of query</description>
+  <command>
+usearch -cluster_otus_utax $input -db $db -utax_level $level -strand $strand -utax_cutoff $cutoff
+-otus $fasta -utaxotusout $txt -utaxout $utax 
+  </command>
+  <inputs>
+    <param format="fasta" name="input" type="data" label="Fasta Input File" help="select fasta input file" />
+    <param name="db" type="select" label="Utax DB" help="Select Utax Taxonomy Database">
+      <option value="/home/bioinformatics3/taxodb/utax/unite_v7_full.udb">Unite v7 Full</option>
+      <option value="/home/bioinformatics3/taxodb/utax/unite_v7_its1.udb">Unite v7 ITS1</option>
+      <option value="/home/bioinformatics3/taxodb/utax/unite_v7_its2.udb">Unite v7 ITS2</option>
+    </param>
+    <param name="level" type="select" label="Taxonomy level" help="Select taxonomy level">
+      <option value="k">Kingdom</option>
+      <option value="d">Domain</option>
+      <option value="p">Phylum</option>
+      <option value="c">Class</option>
+      <option value="o">Order</option>
+      <option value="f">Family</option>
+      <option value="g">Genus</option>
+      <option value="s">Species</option>
+    </param>
+    <param name="strand" type="select" label="strand" help="Select strand type">
+      <option value="plus">Plus</option>
+      <option value="minus">Minus</option>
+      <option value="both" selected="TRUE">Both</option>
+    </param>
+    <param name="cutoff" type="float" value="0.9" size="4" label="Utax Cutoff" help="Define utax cutoff" />
+  </inputs>
+  <outputs>
+    <data format="fasta" name="fasta" label="${tool.name} on ${on_string}: Fasta otus file" />
+    <data format="txt" name="txt" label="${tool.name} on ${on_string}: Tabbed text output" />
+    <data format="txt" name="utax" label="${tool.name} on ${on_string}: Utax out file format" />
+  </outputs>
+  <stdio>
+    <exit_code range="1:" level="fatal" />
+  </stdio>
+  <help>
+**What it does**
+
+.. image:: ${static_path}/images/logo_smart.jpg
+    :height: 100
+    :width: 200
+
+Bioinformatics Section, Biotechnology Department, Plant Production and Biotechnology Division, PT SMART Tbk.
+
+
+  </help>
+</tool>

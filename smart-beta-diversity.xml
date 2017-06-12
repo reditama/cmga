@@ -1,0 +1,61 @@
+<tool id="smart-beta-diversity" name="SMART Beta Diversity" version="1.0.0">
+  <description>Calculate beta diversity from OTU tables</description>
+  <command>
+beta_diversity.py -i $input -o beta_div/ -m $metrics
+  </command>
+  <inputs>
+    <param format="json" name="input" type="data" label="Select BIOM formated tabular file" />
+    <param name="metrics" type="select" label="Select Metric for Calculation">
+      <option value="abund_jaccard">Abund jaccard</option>
+      <option value="binary_chisq">Binary chisq</option>
+      <option value="binary_chord">Binary chord</option>
+      <option value="binary_euclidean">Binary euclidean</option>
+      <option value="binary_hamming">Binary hamming</option>
+      <option value="binary_jaccard">Binary jaccard</option>
+      <option value="binary_lennon">Binary lennon</option>
+      <option value="binary_ochiai">Binary ochiai</option>
+      <option value="binary_otu_gain">Binary OTU gain</option>
+      <option value="binary_pearson">Binary pearson</option>
+      <option value="binary_sorensen_dice">Binary sorensen dice</option>
+      <option value="bray_curtis">Bray curtis</option>
+      <option value="bray_curtis_faith">Bray curtis faith</option>
+      <option value="bray_curtis_magurran">Bray curtis magurran</option>
+      <option value="canberra">Canberra</option>
+      <option value="chisq">Chisq</option>
+      <option value="chord">Chord</option>
+      <option value="euclidean" selected="true">Euclidean</option>
+      <option value="gower">Gower</option>
+      <option value="hellinger">Hellinger</option>
+      <option value="kulczynski">Kulczynski</option>
+      <option value="manhattan">Manhattan</option>
+      <option value="morisita_horn">Morisita horn</option>
+      <option value="pearson">Pearson</option>
+      <option value="soergel">Soergel</option>
+      <option value="spearman_approx">Spearman Approx</option>
+      <option value="specprof">Specprof</option>
+      <option value="unifrac">Unifrac</option>
+      <option value="unifrac_g">Unifrac g</option>
+      <option value="unifrac_g_full_tree">Unifrac g full tree</option>
+      <option value="unweighted_unifrac">Unweighted unifrac</option>
+      <option value="unweighted_unifrac_full_tree">Unweighted unifrac full tree</option>
+      <option value="weighted_normalized_unifrac">Weighted normalized unifrac</option>
+      <option value="weighted_unifrac">Weighted unifrac</option>
+    </param> 
+  </inputs>
+  <outputs>
+    <data format="tabular" name="output" label="${tool.name} on ${on_string}: Output" from_work_dir="beta_div/*.txt" />
+  </outputs>
+  <stdio>
+    <exit_code range="1:" level="fatal" />
+  </stdio>
+  <help>
+**What it does**
+
+.. image:: ${static_path}/images/logo_smart.jpg
+    :height: 100
+    :width: 200
+
+Bioinformatics Section, Biotechnology Department, Plant Production and Biotechnology Division, PT SMART Tbk.
+
+  </help>
+</tool>

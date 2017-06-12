@@ -1,0 +1,42 @@
+<tool id="smart-uchime" name="SMART Uchime" version="1.0.0">
+  <description>Predict chimera from sequences</description>
+  <command>
+uchime --input $input
+#if $refseq.useref=="T"
+  --db $refseq.reference
+#else
+
+#end if
+--uchimeout $uchimeout
+--uchimealns $uchimealns
+
+  </command>
+  <inputs>
+    <param format="fasta" name="input" type="data" label="input file" help="Select input file" />
+    <conditional name="refseq">
+      <param name="useref" type="select" label="use reference sequence?">
+        <option value="T" selected="TRUE">Yes, let me choose the reference</option>
+        <option value="F">No, use de novo calculation</option>
+      </param>
+      <when value="T">
+        <param name="reference" type="select" label="Reference sequence">
+          <option value="/home/bioinformatics3/blastdb/unite_general_fasta/sh_general_release_dynamic_s_20.11.2016.fasta">Fungi - UNITE sh general fasta</option>
+          <option value="/home/bioinformatics3/blastdb/ITSoneDB_smart_v1/ITSoneDB_smart_v1.fasta">Fungi - ITSoneDB modified by PT SMART</option>
+        </param>
+      </when>
+      <when value="F" />
+    </conditional>
+  </inputs>
+  <outputs>
+    <data format="tabular" name="uchimeout" />
+    <data format="txt" name="uchimealns" />
+  </outputs>
+  <stdio>
+    <exit_code range="1:" level="fatal" />
+  </stdio>
+  <help>
+**What it does**
+
+
+  </help>
+</tool>

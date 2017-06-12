@@ -1,0 +1,36 @@
+<tool id="smart-make-phylogeny" name="SMART Make Phylogeny" version="1.0.0">
+  <description>Build phylogenic tree from OTUs-like tables</description>
+  <command>
+make_phylogeny.py -i $input -t $tree -o $output -r $method
+  </command>
+  <inputs>
+    <param format="fasta" name="input" type="data" label="Select Fasta Input File" />
+    <param name="tree" type="select" label="Select method for tree building">
+      <option value="clustalw">ClustalW</option>
+      <option value="raxml_v730">RaXML v730</option>
+      <option value="muscle">Muscle</option>
+      <option value="fasttree" selected="true">FastTree</option>
+      <option value="clearcut">ClearCut</option>
+    </param>
+    <param name="method" type="select" label="Root Method">
+      <option value="midpoint">Midpoint</option>
+      <option value="tree_method_default" selected="true">Tree method default</option>
+    </param>
+  </inputs>
+  <outputs>
+    <data format="txt" name="output" />
+  </outputs>
+  <stdio>
+    <exit_code range="1:" level="fatal" />
+  </stdio>
+  <help>
+**What it does**
+
+.. image:: ${static_path}/images/logo_smart.jpg
+    :height: 100
+    :width: 200
+
+Bioinformatics Section, Biotechnology Department, Plant Production and Biotechnology Division, PT SMART Tbk.
+
+  </help>
+</tool>

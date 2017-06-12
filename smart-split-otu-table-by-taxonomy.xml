@@ -1,0 +1,20 @@
+<tool id="smart-otu-table-by-taxonomy" name="SMART OTU Table by Taxonomy" version="1.0.0">
+  <description>Split a single OTU table into multiple table based on the taxonomy at some user-specified depth</description>
+  <command>
+split_otu_table_by_taxonomy.py -i $input -o ./splitted/ -L $level
+  </command>
+  <inputs>
+    <param format="json" name="input" type="data" label="Input BIOM file" />
+    <param name="level" type="select" label="Level taxonomy">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+    </param>
+  </inputs>
+  <output>
+</tool>

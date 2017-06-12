@@ -1,0 +1,57 @@
+<tool id="smart-alpha-diversity" name="SMART Alpha Diversity" version="1.0.0">
+  <description>Calculates alpha diversity using an OTU table</description>
+  <command>
+alpha_diversity.py -i $input -m $metrics -o $output
+  </command>
+  <inputs>
+    <param format="tabular" name="input" type="data" label="Select QIIME formated tabular file" />
+      <param name="metrics" type="select"  label="Select Metric for Calculation">
+      <option value="ace">Ace</option>
+      <option value="berger_parker_d">Berger Parker</option>
+      <option value="brillouin_d">Brillouin D</option>
+      <option value="chao1" selected="true">Chao 1</option>
+      <option value="chao1_ci">Chao 1 ci</option>
+      <option value="dominance">Dominance</option>
+      <option value="doubles">Doubles</option>
+      <option value="enspie">Enspie</option>
+      <option value="equitability">Equitability</option>
+      <option value="esty_ci">Esty ci</option>
+      <option value="fisher_alpha">Fisher Alpha</option>
+      <option value="gini_index">Gini Index</option>
+      <option value="goods_coverage">Goods Coverage</option>
+      <option value="heip_e">Heip E</option>
+      <option value="kempton_taylor_q">Kempton Taylor </option>
+      <option value="margalef">Margalef</option>
+      <option value="mcintosh_d">Mcintosh D</option>
+      <option value="mcintosh_e">Mcintosh E</option>
+      <option value="menhinick">Menhinick</option>
+      <option value="michealis_menten_fit">Michealis Menten Fit</option>
+      <option value="observed_otus">Observed OTUs</option>
+      <option value="observed_species">Observed Species</option>
+      <option value="osd">OSD</option>
+      <option value="simpson_reciprocal">Simpson Reciprocal</option>
+      <option value="robbins">Robbins</option>
+      <option value="shannon">Shannon</option>
+      <option value="simpson">Simpson</option>
+      <option value="simpson_e">Simpson E</option>
+      <option value="singles">Singles</option>
+      <option value="strong">Strong</option>
+      <option value="PD_whole_tree">PD Whole Tree</option>
+    </param>
+  </inputs>
+  <outputs>
+    <data format="tabular" name="output" />
+  </outputs>
+  <stdio>
+    <exit_code range="1:" level="fatal" />
+  </stdio>
+  <help>
+**What it does**
+
+.. image:: ${static_path}/images/logo_smart.jpg
+    :height: 100
+    :width: 200
+
+Bioinformatics Section, Biotechnology Department, Plant Production and Biotechnology Division, PT SMART Tbk.
+  </help>
+</tool>
